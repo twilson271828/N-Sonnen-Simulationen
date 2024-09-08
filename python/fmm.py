@@ -1,5 +1,20 @@
 import numpy as np
 
+"""
+Explanation:
+Body Class: Represents a particle with its mass, position, velocity, and force.
+Multipole Expansion: A simplified version of a multipole expansion, storing the total mass and center of mass of bodies within a node.
+FMMNode Class: Represents a node in the FMM tree, stores bodies, divides space into quadrants (children), and computes forces using multipole approximations.
+Force Calculation: If a cell is far enough away, the interaction is approximated by treating the entire cell as a single mass. Otherwise, we recurse into child nodes or directly compute interactions between bodies.
+Simulation Loop: The simulation runs for multiple time steps, updating the positions and velocities of the bodies at each step.
+Notes:
+This is a simplified 2D implementation. You can extend this to 3D by using octrees instead of quadtrees.
+The multipole expansion in this example is simplified and only includes basic terms. In a full FMM implementation, higher-order terms (e.g., dipole, quadrupole) would be included for greater accuracy.
+The parameter theta controls the trade-off between accuracy and speed. Lower values of theta improve accuracy but reduce performance.
+This code provides the framework for the Fast Multipole Method (FMM) N-body simulation.
+
+"""
+
 # Define constants
 G = 6.67430e-11  # Gravitational constant
 
