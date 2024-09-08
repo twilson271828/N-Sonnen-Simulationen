@@ -1,4 +1,26 @@
 import numpy as np
+"""
+Explanation:
+Body Class: Represents each particle with attributes like mass, position, velocity, and force.
+QuadTreeNode Class: Implements a quadtree node, handling body insertion and the hierarchical structure. The tree is recursively subdivided based on the positions of the bodies.
+Insert & Subdivide: These methods insert bodies into the tree and recursively subdivide the tree into smaller quadrants.
+Force Calculation: Computes the gravitational force acting on a body using the Barnes-Hut approximation. The algorithm determines whether to treat a group of bodies as a single body based on the distance and the parameter 
+𝜃
+θ (a tunable parameter to balance accuracy and speed).
+Simulation Loop: Simulates multiple time steps, updating the positions and velocities of the bodies at each step.
+Notes:
+This is a 2D implementation. For a 3D version, you would use an octree (8 children per node) instead of a quadtree.
+You can adjust the softening factor 
+𝜖
+ϵ and theta parameter to balance accuracy and computational cost.
+This code provides the basic framework for Barnes-Hut N-body simulations in Python.
+    
+"""    
+
+
+
+
+
 
 # Define a class to represent each particle
 class Body:
