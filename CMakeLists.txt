@@ -25,3 +25,10 @@ project(
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage")
         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
     endif()
+
+    # Find gcovr
+    find_program(GCOVR gcovr)
+    if(NOT GCOVR)
+        message(FATAL_ERROR "gcovr not found! Please install it.")
+    endif()
+    
