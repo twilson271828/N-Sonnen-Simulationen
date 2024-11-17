@@ -5,7 +5,7 @@ add_executable(SonneUnitTest SonneUnitTest.cpp)
 target_link_libraries(SonneUnitTest
  PRIVATE
   GTest::GTest
-  BigInt)
+  sonne)
 
   
 add_test(NAME SonneUnitTest COMMAND SonneUnitTest)

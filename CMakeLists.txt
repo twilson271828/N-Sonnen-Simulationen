@@ -15,6 +15,8 @@ project(
 
     add_subdirectory(src)
     add_subdirectory(include)
+    add_subdirectory(tests)
+    set(CMAKE_VERBOSE_MAKEFILE on)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/)
@@ -25,6 +27,9 @@ project(
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage")
         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
     endif()
+
+    add_test(NAME SonneUnitTest COMMAND SonneUnitTest)
+    set_target_properties(SonneUnitTest PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/testbin")
 
     # Find gcovr
     find_program(GCOVR gcovr)

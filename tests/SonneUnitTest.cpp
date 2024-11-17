@@ -1,4 +1,4 @@
-#include "../include/Sonne.hpp"
+#include "../include/sonne.hpp"
 #include <gtest/gtest.h>
 
 class SonneUnitTest : public ::testing::Test {
@@ -12,6 +12,14 @@ public:
 
 };
 
-TEST_F(SonneTest, ConstructorTests) {
+TEST_F(SonneUnitTest, ConstructorTests) {
     EXPECT_EQ(1, 1);
 }
+
+
+int main(int argc, char **argv) {
+
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
+
