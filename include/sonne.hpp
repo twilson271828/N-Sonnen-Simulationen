@@ -28,6 +28,8 @@ class sonne{
     inline const std::array<double, 3>& get_force() const { return m_force; }
     inline double get_mass() const { return m_mass; }
     inline double get_radius() const { return m_radius; }
+
+    void update(double dt);
     friend std::ostream &operator<<(std::ostream &out, const sonne &body);
 };
 
