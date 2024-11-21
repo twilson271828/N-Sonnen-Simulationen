@@ -38,8 +38,8 @@ class Body:
 class MultipoleExpansion:
     def __init__(self):
         self.total_mass = 0.0
-        self.center_of_mass = np.zeros(2)
-        self.multipole = np.zeros(4)  # Quadrupole expansion (simplified)
+        self.center_of_mass = np.zeros(3)
+        self.multipole = np.zeros(8)  # Quadrupole expansion (simplified)
 
     def add_body(self, body):
         # Add a body to the multipole expansion
@@ -74,14 +74,18 @@ class FMMNode:
         self.multipole.add_body(body)
 
     def subdivide(self):
-        # Subdivide the node into 4 quadrants (2D case)
+        # Subdivide the node into 8 quadrants (-3D case)
         half_size = self.size / 2
         offset = half_size / 2
         self.children = [
-            FMMNode(self.center + [-offset, -offset], half_size),
-            FMMNode(self.center + [offset, -offset], half_size),
-            FMMNode(self.center + [-offset, offset], half_size),
-            FMMNode(self.center + [offset, offset], half_size),
+            FMMNode(self.center + [offset,-offset, -offset], half_size),
+            FMMNode(self.center + [offset,offset, -offset], half_size),
+            FMMNode(self.center + [offset,-offset, offset], half_size),
+            FMMNode(self.center + [offset,offset, offset], half_size),
+            FMMNode(self.center + [-offset,-offset, -offset], half_size),
+            FMMNode(self.center + [-offset,offset, -offset], half_size),
+            FMMNode(self.center + [-offset,-offset, offset], half_size),
+            FMMNode(self.center + [-offset,offset, offset], half_size),
         ]
         # Distribute current bodies among the children
         for body in self.bodies:
@@ -135,14 +139,14 @@ class FMMNode:
         diff = self.multipole.center_of_mass - body.pos
         dist = np.linalg.norm(diff)
         if dist == 0:
-            return np.zeros(2)
+            return np.zeros(3)
         force_magnitude = (G * body.mass * self.multipole.total_mass) / (dist**2 + eps**2)
         return force_magnitude * diff / (dist + eps)
 
 # Define a function to simulate one time step using FMM
 def simulate_fmm(bodies, bounds, dt, theta=0.5):
     # Create the FMM tree root node (covers the entire simulation area)
-    root = FMMNode(center=(bounds[0] / 2, bounds[1] / 2), size=max(bounds))
+    root = FMMNode(center=(bounds[0] / 2, bounds[1] / 2,bounds[2] / 2), size=max(bounds))
     
     # Insert all bodies into the FMM tree
     for body in bodies:
@@ -164,13 +168,13 @@ def simulate_fmm(bodies, bounds, dt, theta=0.5):
 if __name__ == "__main__":
     # Create some bodies (particles)
     bodies = [
-        Body(1e5, [0.5, 0.5], [0.0, 0.0]),
-        Body(1e5, [1.5, 0.5], [0.0, 0.1]),
-        Body(1e5, [0.5, 1.5], [-0.1, 0.0]),
+        Body(1e5, [0.5, 0.5,0.5], [0.0, 0.0,0.1]),
+        Body(1e5, [1.5, 0.5,1.0], [0.0, 0.1,0.0]),
+        Body(1e5, [0.5, 1.5,0.0], [-0.1, 0.0,0.0]),
     ]
 
     # Simulation parameters
-    bounds = [2.0, 2.0]  # Size of the simulation area
+    bounds = [2.0, 2.0,2.0]  # Size of the simulation area
     dt = 0.01  # Time step
     num_steps = 1000
 
