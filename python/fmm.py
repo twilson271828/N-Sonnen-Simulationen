@@ -24,10 +24,10 @@ class Body:
         self.mass = mass
         self.pos = np.array(pos, dtype=float)
         self.vel = np.array(vel, dtype=float)
-        self.force = np.zeros(2)  # 2D force vector
+        self.force = np.zeros(3)  # 2D force vector
 
     def reset_force(self):
-        self.force = np.zeros(2)
+        self.force = np.zeros(3)
 
     def update(self, dt):
         # Update position and velocity based on force
@@ -117,6 +117,7 @@ class FMMNode:
             dist = np.linalg.norm(body.pos - self.multipole.center_of_mass)
             if self.size / dist < theta:
                 # Apply multipole approximation
+            
                 body.force += self.multipole_approximation(body)
             else:
                 # Otherwise, recurse into children
@@ -176,7 +177,7 @@ if __name__ == "__main__":
     # Simulation parameters
     bounds = [2.0, 2.0,2.0]  # Size of the simulation area
     dt = 0.01  # Time step
-    num_steps = 1000
+    num_steps = 10000
 
     # Run the simulation
     for step in range(num_steps):
