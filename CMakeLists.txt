@@ -5,6 +5,9 @@ project(
     VERSION 1.0
     LANGUAGES CXX)
 
+    #Find Armadillo
+    find_package(Armadillo REQUIRED)
+    include_directories(${ARMADILLO_INCLUDE_DIRS})
     
     #Set the build type to Debug if not already set
     if(NOT CMAKE_BUILD_TYPE)

@@ -14,7 +14,7 @@ target_compile_options(sonne PUBLIC --coverage)
 target_link_libraries(sonne gcov)
 
 add_executable(cryptome cryptome.cpp)
-target_link_libraries(cryptome sonne)
+target_link_libraries(cryptome sonne ${ARMADILLO_LIBRARIES})
 
 set_target_properties(cryptome PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
