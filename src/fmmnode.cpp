@@ -1,10 +1,12 @@
 #include "../include/fmmnode.hpp"
 
-fmmnode::fmmnode(std::vector<sonne> &bodies, double theta, double G, double dt){
+
+fmmnode::fmmnode(std::vector<sonne> &bodies){
     this->bodies = bodies;
-    this->theta = theta;
-    this->G = G;
-    this->dt = dt;
+    
+    if (bodies.size() == 0){
+        this->is_empty = true;
+    }
     this->size = bodies.size();
     this->center = {0, 0, 0};
     for (auto &m : bodies){
@@ -16,42 +18,5 @@ fmmnode::fmmnode(std::vector<sonne> &bodies, double theta, double G, double dt){
     this->center[1] /= this->size;
     this->center[2] /= this->size;
     this->children = std::vector<fmmnode>(8);
-    this->is_leaf = true;
-    this->is_empty = false;
-    this->is_far = false;
-    this->is_near = false;
-    this->is_intermediate = false;
-    this->is_root = false;
-    this->is_external = false;
-    this->is_internal = false;
-    this->is_empty = false;
-    this->is_far = false;
-    this->is_near = false;
-    this->is_intermediate = false;
-    this->is_root = false;
-    this->is_external = false;
-    this->is_internal = false;
-    this->is_empty = false;
-    this->is_far = false;
-    this->is_near = false;
-    this->is_intermediate = false;
-    this->is_root = false;
-    this->is_external = false;
-    this->is_internal = false;
-    this->is_empty = false;
-    this->is_far = false;
-    this->is_near = false;
-    this->is_intermediate = false;
-    this->is_root = false;
-    this->is_external = false;
-    this->is_internal = false;
-    this->is_empty = false;
-    this->is_far = false;
-    this->is_near = false;
-    this->is_intermediate = false;
-    this->is_root = false;
-    this->is_external = false;
-    this->is_internal = false;
-    this->is_empty = false;
-    this->is_far = false;
-    this->is_near = false;
+}
+    
