@@ -1,6 +1,7 @@
-#include "sonne.hpp"
 #include "fmm.hpp"
-#include <armadillo
+#include <armadillo>
+
+
 class fmmnode{
 
     private:
@@ -16,6 +17,9 @@ class fmmnode{
      
     public:
 
+    fmmnode();
     fmmnode(std::vector<sonne> &bodies);
+
+};
 
     //arma::mat get_force_matrix(std::vector<sonne> &bodies, double theta, double G, double dt);

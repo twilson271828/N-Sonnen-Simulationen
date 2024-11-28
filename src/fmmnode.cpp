@@ -1,6 +1,12 @@
 #include "../include/fmmnode.hpp"
 
-
+fmmnode::fmmnode(){
+    this->is_empty = true;
+    this->is_leaf = true;
+    this->size = 0;
+    this->center = {0, 0, 0};
+    this->children = std::vector<fmmnode>(8);
+}
 fmmnode::fmmnode(std::vector<sonne> &bodies){
     this->bodies = bodies;
     

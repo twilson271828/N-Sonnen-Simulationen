@@ -1,4 +1,5 @@
 #include "sonne.hpp"
+
 #include <armadillo>
 #include <vector>
 
@@ -15,10 +16,10 @@ class fmm{
 
     public:
 
-    arma::mat get_force_matrix(std::vector<sonne> &bodies, double theta, double G, double dt);
+    arma::Mat<double> get_force_matrix(std::vector<sonne> &bodies, double theta, double G, double dt);
 
 
-    void compute_forces(std::vector<sonne> &bodies, double theta, double G, double dt);
+    //void compute_forces(std::vector<sonne> &bodies, double theta, double G, double dt);
 
 
-}
+};
