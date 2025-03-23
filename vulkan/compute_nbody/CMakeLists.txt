@@ -26,12 +26,12 @@ add_sample_with_tags(
     NAME "Compute N-Body simulation"
     DESCRIPTION "Multi-pass compute dispatch N-Body particle simulation"
     SHADER_FILES_GLSL
-        "compute_nbody/glsl/particle.vert"
-        "compute_nbody/glsl/particle.frag"
-        "compute_nbody/glsl/particle_calculate.comp"
-        "compute_nbody/glsl/particle_integrate.comp"
+        "shaders/glsl/particle.vert"
+        "shaders/glsl/particle.frag"
+        "shaders/glsl/particle_calculate.comp"
+        "shaders/glsl/particle_integrate.comp"
     SHADER_FILES_HLSL
-        "compute_nbody/hlsl/particle.vert.hlsl"
-        "compute_nbody/hlsl/particle.frag.hlsl"
-        "compute_nbody/hlsl/particle_calculate.comp.hlsl"
-        "compute_nbody/hlsl/particle_integrate.comp.hlsl")
+        "shaders/hlsl/particle.vert.hlsl"
+        "shaders/hlsl/particle.frag.hlsl"
+        "shaders/hlsl/particle_calculate.comp.hlsl"
+        "shaders/hlsl/particle_integrate.comp.hlsl")
